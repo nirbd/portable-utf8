@@ -1621,7 +1621,7 @@ final class UTF8
     public static function extract_text(
         string $str,
         string $search = '',
-        int $length = null,
+        ?int $length = null,
         string $replacer_for_skipped_text = '…',
         string $encoding = 'UTF-8'
     ): string {
@@ -1819,10 +1819,10 @@ final class UTF8
      *                                        stream_context_create. If you don't need to use a
      *                                        custom context, you can skip this parameter by &null;.
      *                                        </p>
-     * @param int|null      $offset           [optional] <p>
+     * @param null|int $offset           [optional] <p>
      *                                        The offset where the reading starts.
      *                                        </p>
-     * @param int<0, max>|null $max_length       [optional] <p>
+     * @param null|int<0, max> $max_length       [optional] <p>
      *                                        Maximum length of data read. The default is to read until end
      *                                        of file is reached.
      *                                        </p>
@@ -1842,8 +1842,8 @@ final class UTF8
         string $filename,
         bool $use_include_path = false,
         $context = null,
-        int $offset = null,
-        int $max_length = null,
+        ?int $offset = null,
+        ?int $max_length = null,
         int $timeout = 10,
         bool $convert_to_utf8 = true,
         string $from_encoding = ''
@@ -2567,7 +2567,7 @@ final class UTF8
     /**
      * Check for php-support.
      *
-     * @param string|null $key
+     * @param null|string $key
      *
      * @psalm-pure
      *
@@ -2576,7 +2576,7 @@ final class UTF8
      *               return bool-value, if $key is used and available<br>
      *               otherwise return <strong>null</strong>
      */
-    public static function getSupportInfo(string $key = null)
+    public static function getSupportInfo(?string $key = null)
     {
         if ($key === null) {
             return self::$SUPPORT;
@@ -2967,7 +2967,7 @@ final class UTF8
      * @param string   $str      <p>
      *                           The input string.
      *                           </p>
-     * @param int|null $flags    [optional] <p>
+     * @param null|int $flags    [optional] <p>
      *                           A bitmask of one or more of the following flags, which specify how to handle quotes
      *                           and which document type to use. The default is ENT_COMPAT | ENT_HTML401.
      *                           <table>
@@ -3027,7 +3027,7 @@ final class UTF8
      */
     public static function html_entity_decode(
         string $str,
-        int $flags = null,
+        ?int $flags = null,
         string $encoding = 'UTF-8'
     ): string {
         if (
@@ -4287,7 +4287,7 @@ final class UTF8
      * @param string      $str                           <p>The input string</p>
      * @param string      $encoding                      [optional] <p>Set the charset for e.g. "mb_" function</p>
      * @param bool        $clean_utf8                    [optional] <p>Remove non UTF-8 chars from the string.</p>
-     * @param string|null $lang                          [optional] <p>Set the language for special cases: az, el, lt,
+     * @param null|string $lang                          [optional] <p>Set the language for special cases: az, el, lt,
      *                                                   tr</p>
      * @param bool        $try_to_keep_the_string_length [optional] <p>true === try to keep the string length: e.g. ẞ
      *                                                   -> ß</p>
@@ -4301,7 +4301,7 @@ final class UTF8
         string $str,
         string $encoding = 'UTF-8',
         bool $clean_utf8 = false,
-        string $lang = null,
+        ?string $lang = null,
         bool $try_to_keep_the_string_length = false
     ): string {
         if ($clean_utf8) {
@@ -4352,7 +4352,7 @@ final class UTF8
      *                                                   not start a new word.</p>
      * @param string      $encoding                      [optional] <p>Set the charset.</p>
      * @param bool        $clean_utf8                    [optional] <p>Remove non UTF-8 chars from the string.</p>
-     * @param string|null $lang                          [optional] <p>Set the language for special cases: az, el, lt,
+     * @param null|string $lang                          [optional] <p>Set the language for special cases: az, el, lt,
      *                                                   tr</p>
      * @param bool        $try_to_keep_the_string_length [optional] <p>true === try to keep the string length: e.g. ẞ
      *                                                   -> ß</p>
@@ -4367,7 +4367,7 @@ final class UTF8
         string $char_list = '',
         string $encoding = 'UTF-8',
         bool $clean_utf8 = false,
-        string $lang = null,
+        ?string $lang = null,
         bool $try_to_keep_the_string_length = false
     ): string {
         if (!$str) {
@@ -4434,13 +4434,13 @@ final class UTF8
      * EXAMPLE: <code>UTF8::ltrim('　中文空白　 '); // '中文空白　 '</code>
      *
      * @param string      $str   <p>The string to be trimmed</p>
-     * @param string|null $chars <p>Optional characters to be stripped</p>
+     * @param null|string $chars <p>Optional characters to be stripped</p>
      *
      * @psalm-pure
      *
      * @return string the string with unwanted characters stripped from the left
      */
-    public static function ltrim(string $str = '', string $chars = null): string
+    public static function ltrim(string $str = '', ?string $chars = null): string
     {
         if ($str === '') {
             return '';
@@ -5614,14 +5614,14 @@ final class UTF8
      * EXAMPLE: <code>UTF8::rtrim('-ABC-中文空白-  '); // '-ABC-中文空白-'</code>
      *
      * @param string      $str   <p>The string to be trimmed.</p>
-     * @param string|null $chars <p>Optional characters to be stripped.</p>
+     * @param null|string $chars <p>Optional characters to be stripped.</p>
      *
      * @psalm-pure
      *
      * @return string
      *                <p>A string with unwanted characters stripped from the right.</p>
      */
-    public static function rtrim(string $str = '', string $chars = null): string
+    public static function rtrim(string $str = '', ?string $chars = null): string
     {
         if ($str === '') {
             return '';
@@ -5749,7 +5749,7 @@ final class UTF8
      * @param string      $str                           <p>The input string.</p>
      * @param string      $encoding                      [optional] <p>Default: 'UTF-8'</p>
      * @param bool        $clean_utf8                    [optional] <p>Remove non UTF-8 chars from the string.</p>
-     * @param string|null $lang                          [optional] <p>Set the language for special cases: az, el, lt,
+     * @param null|string $lang                          [optional] <p>Set the language for special cases: az, el, lt,
      *                                                   tr</p>
      * @param bool        $try_to_keep_the_string_length [optional] <p>true === try to keep the string length: e.g. ẞ
      *                                                   -> ß</p>
@@ -5762,7 +5762,7 @@ final class UTF8
         string $str,
         string $encoding = 'UTF-8',
         bool $clean_utf8 = false,
-        string $lang = null,
+        ?string $lang = null,
         bool $try_to_keep_the_string_length = false
     ): string {
         if ($clean_utf8) {
@@ -6005,7 +6005,7 @@ final class UTF8
      * @param string      $delimiter                     <p>Sequence used to separate parts of the string.</p>
      * @param string      $encoding                      [optional] <p>Set the charset for e.g. "mb_" function</p>
      * @param bool        $clean_utf8                    [optional] <p>Remove non UTF-8 chars from the string.</p>
-     * @param string|null $lang                          [optional] <p>Set the language for special cases: az, el, lt,
+     * @param null|string $lang                          [optional] <p>Set the language for special cases: az, el, lt,
      *                                                   tr</p>
      * @param bool        $try_to_keep_the_string_length [optional] <p>true === try to keep the string length: e.g. ẞ ->
      *                                                   ß</p>
@@ -6023,7 +6023,7 @@ final class UTF8
         string $delimiter,
         string $encoding = 'UTF-8',
         bool $clean_utf8 = false,
-        string $lang = null,
+        ?string $lang = null,
         bool $try_to_keep_the_string_length = false
     ): string {
         if (self::$SUPPORT['mbstring'] === true) {
@@ -7659,7 +7659,7 @@ final class UTF8
      *                                 subject, and the return value is an array as
      *                                 well.
      *                                 </p>
-     * @param int|null        $count   [optional] <p>
+     * @param null|int $count   [optional] <p>
      *                                 If passed, this will hold the number of matched and replaced needles.
      *                                 </p>
      *
@@ -7678,7 +7678,7 @@ final class UTF8
         $search,
         $replace,
         $subject,
-        int &$count = null
+        ?int &$count = null
     ) {
         /**
          * @psalm-suppress PossiblyNullArgument
@@ -7900,7 +7900,7 @@ final class UTF8
      *
      * @param string   $str
      * @param int      $start    <p>Initial index from which to begin extraction.</p>
-     * @param int|null $end      [optional] <p>Index at which to end extraction. Default: null</p>
+     * @param null|int $end      [optional] <p>Index at which to end extraction. Default: null</p>
      * @param string   $encoding [optional] <p>Set the charset for e.g. "mb_" function</p>
      *
      * @psalm-pure
@@ -7912,7 +7912,7 @@ final class UTF8
     public static function str_slice(
         string $str,
         int $start,
-        int $end = null,
+        ?int $end = null,
         string $encoding = 'UTF-8'
     ) {
         if ($encoding === 'UTF-8') {
@@ -8680,18 +8680,18 @@ final class UTF8
      * capitalized.
      *
      * @param string        $str
-     * @param string[]|null $ignore                        [optional] <p>An array of words not to capitalize or
+     * @param null|string[] $ignore                        [optional] <p>An array of words not to capitalize or
      *                                                     null. Default: null</p>
      * @param string        $encoding                      [optional] <p>Default: 'UTF-8'</p>
      * @param bool          $clean_utf8                    [optional] <p>Remove non UTF-8 chars from the
      *                                                     string.</p>
-     * @param string|null   $lang                          [optional] <p>Set the language for special cases: az,
+     * @param null|string $lang                          [optional] <p>Set the language for special cases: az,
      *                                                     el, lt, tr</p>
      * @param bool          $try_to_keep_the_string_length [optional] <p>true === try to keep the string length:
      *                                                     e.g. ẞ -> ß</p>
      * @param bool          $use_trim_first                [optional] <p>true === trim the input string,
      *                                                     first</p>
-     * @param string|null   $word_define_chars             [optional] <p>An string of chars that will be used as
+     * @param null|string $word_define_chars             [optional] <p>An string of chars that will be used as
      *                                                     whitespace separator === words.</p>
      *
      * @psalm-pure
@@ -8701,13 +8701,13 @@ final class UTF8
      */
     public static function str_titleize(
         string $str,
-        array $ignore = null,
+        ?array $ignore = null,
         string $encoding = 'UTF-8',
         bool $clean_utf8 = false,
-        string $lang = null,
+        ?string $lang = null,
         bool $try_to_keep_the_string_length = false,
         bool $use_trim_first = true,
-        string $word_define_chars = null
+        ?string $word_define_chars = null
     ): string {
         if ($str === '') {
             return '';
@@ -9053,13 +9053,13 @@ final class UTF8
     /**
      * @param string   $str
      * @param bool     $remove_empty_values <p>Remove empty values.</p>
-     * @param int|null $remove_short_values <p>The min. string length or null to disable</p>
+     * @param null|int $remove_short_values <p>The min. string length or null to disable</p>
      *
      * @psalm-pure
      *
      * @return string[]
      */
-    public static function str_to_lines(string $str, bool $remove_empty_values = false, int $remove_short_values = null): array
+    public static function str_to_lines(string $str, bool $remove_empty_values = false, ?int $remove_short_values = null): array
     {
         if ($str === '') {
             return $remove_empty_values ? [] : [''];
@@ -9098,7 +9098,7 @@ final class UTF8
      * @param string   $str
      * @param string   $char_list           <p>Additional chars for the definition of "words".</p>
      * @param bool     $remove_empty_values <p>Remove empty values.</p>
-     * @param int|null $remove_short_values <p>The min. string length or null to disable</p>
+     * @param null|int $remove_short_values <p>The min. string length or null to disable</p>
      *
      * @psalm-pure
      *
@@ -9110,7 +9110,7 @@ final class UTF8
         string $str,
         string $char_list = '',
         bool $remove_empty_values = false,
-        int $remove_short_values = null
+        ?int $remove_short_values = null
     ): array {
         if ($str === '') {
             return $remove_empty_values ? [] : [''];
@@ -9337,7 +9337,7 @@ final class UTF8
      * @param string      $str                           <p>The input string.</p>
      * @param string      $encoding                      [optional] <p>Default: 'UTF-8'</p>
      * @param bool        $clean_utf8                    [optional] <p>Remove non UTF-8 chars from the string.</p>
-     * @param string|null $lang                          [optional] <p>Set the language for special cases: az, el, lt,
+     * @param null|string $lang                          [optional] <p>Set the language for special cases: az, el, lt,
      *                                                   tr</p>
      * @param bool        $try_to_keep_the_string_length [optional] <p>true === try to keep the string length: e.g. ẞ
      *                                                   -> ß</p>
@@ -9351,7 +9351,7 @@ final class UTF8
         string $str,
         string $encoding = 'UTF-8',
         bool $clean_utf8 = false,
-        string $lang = null,
+        ?string $lang = null,
         bool $try_to_keep_the_string_length = false
     ): string {
         return self::ucfirst(self::str_camelize($str, $encoding), $encoding, $clean_utf8, $lang, $try_to_keep_the_string_length);
@@ -9501,7 +9501,7 @@ final class UTF8
      * @param string   $str
      * @param string   $char_list
      * @param int      $offset
-     * @param int|null $length
+     * @param null|int $length
      * @param string   $encoding  [optional] <p>Set the charset for e.g. "mb_" function</p>
      *
      * @psalm-pure
@@ -9514,7 +9514,7 @@ final class UTF8
         string $str,
         string $char_list,
         int $offset = 0,
-        int $length = null,
+        ?int $length = null,
         string $encoding = 'UTF-8'
     ): int {
         if ($encoding !== 'UTF-8' && $encoding !== 'CP850') {
@@ -9632,7 +9632,7 @@ final class UTF8
      * @param string      $str            <p>
      *                                    The input string.
      *                                    </p>
-     * @param string|null $allowable_tags [optional] <p>
+     * @param null|string $allowable_tags [optional] <p>
      *                                    You can use the optional second parameter to specify tags which should
      *                                    not be stripped.
      *                                    </p>
@@ -9649,7 +9649,7 @@ final class UTF8
      */
     public static function strip_tags(
         string $str,
-        string $allowable_tags = null,
+        ?string $allowable_tags = null,
         bool $clean_utf8 = false
     ): string {
         if ($str === '') {
@@ -11106,7 +11106,7 @@ final class UTF8
      * @param string   $str      <p>The input string.</p>
      * @param string   $mask     <p>The mask of chars</p>
      * @param int      $offset   [optional]
-     * @param int|null $length   [optional]
+     * @param null|int $length   [optional]
      * @param string   $encoding [optional] <p>Set the charset.</p>
      *
      * @psalm-pure
@@ -11117,7 +11117,7 @@ final class UTF8
         string $str,
         string $mask,
         int $offset = 0,
-        int $length = null,
+        ?int $length = null,
         string $encoding = 'UTF-8'
     ) {
         if ($encoding !== 'UTF-8' && $encoding !== 'CP850') {
@@ -11335,7 +11335,7 @@ final class UTF8
      *                                </p>
      * @param bool        $clean_utf8 [optional] <p>Remove non UTF-8 chars from the string.</p>
      * @param string      $encoding   [optional] <p>Set the charset.</p>
-     * @param string|null $lang       [optional] <p>Set the language for special cases: az, el, lt, tr</p>
+     * @param null|string $lang       [optional] <p>Set the language for special cases: az, el, lt, tr</p>
      * @param bool        $lower      [optional] <p>Use lowercase string, otherwise use uppercase string. PS: uppercase
      *                                is for some languages better ...</p>
      *
@@ -11348,7 +11348,7 @@ final class UTF8
         bool $full = true,
         bool $clean_utf8 = false,
         string $encoding = 'UTF-8',
-        string $lang = null,
+        ?string $lang = null,
         bool $lower = true
     ): string {
         if ($str === '') {
@@ -11388,7 +11388,7 @@ final class UTF8
      * @param string      $str                           <p>The string being lowercased.</p>
      * @param string      $encoding                      [optional] <p>Set the charset for e.g. "mb_" function</p>
      * @param bool        $clean_utf8                    [optional] <p>Remove non UTF-8 chars from the string.</p>
-     * @param string|null $lang                          [optional] <p>Set the language for special cases: az, el, lt,
+     * @param null|string $lang                          [optional] <p>Set the language for special cases: az, el, lt,
      *                                                   tr</p>
      * @param bool        $try_to_keep_the_string_length [optional] <p>true === try to keep the string length: e.g. ẞ
      *                                                   -> ß</p>
@@ -11402,7 +11402,7 @@ final class UTF8
         $str,
         string $encoding = 'UTF-8',
         bool $clean_utf8 = false,
-        string $lang = null,
+        ?string $lang = null,
         bool $try_to_keep_the_string_length = false
     ): string {
         // init
@@ -11468,7 +11468,7 @@ final class UTF8
      * @param string      $str                           <p>The string being uppercased.</p>
      * @param string      $encoding                      [optional] <p>Set the charset.</p>
      * @param bool        $clean_utf8                    [optional] <p>Remove non UTF-8 chars from the string.</p>
-     * @param string|null $lang                          [optional] <p>Set the language for special cases: az, el, lt,
+     * @param null|string $lang                          [optional] <p>Set the language for special cases: az, el, lt,
      *                                                   tr</p>
      * @param bool        $try_to_keep_the_string_length [optional] <p>true === try to keep the string length: e.g. ẞ
      *                                                   -> ß</p>
@@ -11482,7 +11482,7 @@ final class UTF8
         $str,
         string $encoding = 'UTF-8',
         bool $clean_utf8 = false,
-        string $lang = null,
+        ?string $lang = null,
         bool $try_to_keep_the_string_length = false
     ): string {
         // init
@@ -11682,7 +11682,7 @@ final class UTF8
      *
      * @param string   $str        <p>The string being checked.</p>
      * @param int      $offset     <p>The first position used in str.</p>
-     * @param int|null $length     [optional] <p>The maximum length of the returned string.</p>
+     * @param null|int $length     [optional] <p>The maximum length of the returned string.</p>
      * @param string   $encoding   [optional] <p>Set the charset for e.g. "mb_" function</p>
      * @param bool     $clean_utf8 [optional] <p>Remove non UTF-8 chars from the string.</p>
      *
@@ -11696,7 +11696,7 @@ final class UTF8
     public static function substr(
         string $str,
         int $offset = 0,
-        int $length = null,
+        ?int $length = null,
         string $encoding = 'UTF-8',
         bool $clean_utf8 = false
     ) {
@@ -11849,7 +11849,7 @@ final class UTF8
      * @param string   $str2               <p>The secondary string being compared.</p>
      * @param int      $offset             [optional] <p>The start position for the comparison. If negative, it starts
      *                                     counting from the end of the string.</p>
-     * @param int|null $length             [optional] <p>The length of the comparison. The default value is the largest
+     * @param null|int $length             [optional] <p>The length of the comparison. The default value is the largest
      *                                     of the length of the str compared to the length of main_str less the
      *                                     offset.</p>
      * @param bool     $case_insensitivity [optional] <p>If case_insensitivity is TRUE, comparison is case
@@ -11867,7 +11867,7 @@ final class UTF8
         string $str1,
         string $str2,
         int $offset = 0,
-        int $length = null,
+        ?int $length = null,
         bool $case_insensitivity = false,
         string $encoding = 'UTF-8'
     ): int {
@@ -11908,7 +11908,7 @@ final class UTF8
      * @param string   $haystack   <p>The string to search in.</p>
      * @param string   $needle     <p>The substring to search for.</p>
      * @param int      $offset     [optional] <p>The offset where to start counting.</p>
-     * @param int|null $length     [optional] <p>
+     * @param null|int $length     [optional] <p>
      *                             The maximum length after the specified offset to search for the
      *                             substring. It outputs a warning if the offset plus the length is
      *                             greater than the haystack length.
@@ -11925,7 +11925,7 @@ final class UTF8
         string $haystack,
         string $needle,
         int $offset = 0,
-        int $length = null,
+        ?int $length = null,
         string $encoding = 'UTF-8',
         bool $clean_utf8 = false
     ) {
@@ -12000,7 +12000,7 @@ final class UTF8
      * @param int      $offset   [optional] <p>
      *                           The offset where to start counting
      *                           </p>
-     * @param int|null $length   [optional] <p>
+     * @param null|int $length   [optional] <p>
      *                           The maximum length after the specified offset to search for the
      *                           substring. It outputs a warning if the offset plus the length is
      *                           greater than the haystack length.
@@ -12017,7 +12017,7 @@ final class UTF8
         string $haystack,
         string $needle,
         int $offset = 0,
-        int $length = null
+        ?int $length = null
     ) {
         if ($haystack === '' || $needle === '') {
             return 0;
@@ -12158,7 +12158,7 @@ final class UTF8
      *
      * @param string   $str    <p>The string being checked.</p>
      * @param int      $offset <p>The first position used in str.</p>
-     * @param int|null $length [optional] <p>The maximum length of the returned string.</p>
+     * @param null|int $length [optional] <p>The maximum length of the returned string.</p>
      *
      * @psalm-pure
      *
@@ -12167,7 +12167,7 @@ final class UTF8
      *                      <i>length</i> parameters.</p><p>If <i>str</i> is shorter than <i>offset</i>
      *                      characters long, <b>FALSE</b> will be returned.</p>
      */
-    public static function substr_in_byte(string $str, int $offset = 0, int $length = null)
+    public static function substr_in_byte(string $str, int $offset = 0, ?int $length = null)
     {
         // empty string
         if ($str === '' || $length === 0) {
@@ -12551,7 +12551,7 @@ final class UTF8
      * @param string      $str                           <p>The input string.</p>
      * @param string      $encoding                      [optional] <p>Set the charset for e.g. "mb_" function</p>
      * @param bool        $clean_utf8                    [optional] <p>Remove non UTF-8 chars from the string.</p>
-     * @param string|null $lang                          [optional] <p>Set the language for special cases: az, el, lt,
+     * @param null|string $lang                          [optional] <p>Set the language for special cases: az, el, lt,
      *                                                   tr</p>
      * @param bool        $try_to_keep_the_string_length [optional] <p>true === try to keep the string length: e.g. ẞ
      *                                                   -> ß</p>
@@ -12565,7 +12565,7 @@ final class UTF8
         string $str,
         string $encoding = 'UTF-8',
         bool $clean_utf8 = false,
-        string $lang = null,
+        ?string $lang = null,
         bool $try_to_keep_the_string_length = false
     ): string {
         if ($clean_utf8) {
@@ -12965,14 +12965,14 @@ final class UTF8
      * EXAMPLE: <code>UTF8::trim('   -ABC-中文空白-  '); // '-ABC-中文空白-'</code>
      *
      * @param string      $str   <p>The string to be trimmed</p>
-     * @param string|null $chars [optional] <p>Optional characters to be stripped</p>
+     * @param null|string $chars [optional] <p>Optional characters to be stripped</p>
      *
      * @psalm-pure
      *
      * @return string
      *                <p>The trimmed string.</p>
      */
-    public static function trim(string $str = '', string $chars = null): string
+    public static function trim(string $str = '', ?string $chars = null): string
     {
         if ($str === '') {
             return '';
@@ -13008,7 +13008,7 @@ final class UTF8
      * @param string      $str                           <p>The input string.</p>
      * @param string      $encoding                      [optional] <p>Set the charset for e.g. "mb_" function</p>
      * @param bool        $clean_utf8                    [optional] <p>Remove non UTF-8 chars from the string.</p>
-     * @param string|null $lang                          [optional] <p>Set the language for special cases: az, el, lt,
+     * @param null|string $lang                          [optional] <p>Set the language for special cases: az, el, lt,
      *                                                   tr</p>
      * @param bool        $try_to_keep_the_string_length [optional] <p>true === try to keep the string length: e.g. ẞ
      *                                                   -> ß</p>
@@ -13022,7 +13022,7 @@ final class UTF8
         string $str,
         string $encoding = 'UTF-8',
         bool $clean_utf8 = false,
-        string $lang = null,
+        ?string $lang = null,
         bool $try_to_keep_the_string_length = false
     ): string {
         if ($str === '') {
@@ -13476,7 +13476,7 @@ final class UTF8
      *                                     If this flag is true, then the method will add a $break at the end
      *                                     of the result string.
      *                                     </p>
-     * @param non-empty-string|null $delimiter       [optional] <p>
+     * @param null|non-empty-string $delimiter       [optional] <p>
      *                                     You can change the default behavior, where we split the string by newline.
      *                                     </p>
      *
@@ -13490,7 +13490,7 @@ final class UTF8
         string $break = "\n",
         bool $cut = false,
         bool $add_final_break = true,
-        string $delimiter = null
+        ?string $delimiter = null
     ): string {
         if ($delimiter === null) {
             $strings = \preg_split('/\\r\\n|\\r|\\n/', $str);
@@ -13808,7 +13808,7 @@ final class UTF8
     /**
      * @param string[] $strings
      * @param bool     $remove_empty_values
-     * @param int|null $remove_short_values
+     * @param null|int $remove_short_values
      *
      * @psalm-pure
      *
@@ -13817,7 +13817,7 @@ final class UTF8
     private static function reduce_string_array(
         array $strings,
         bool $remove_empty_values,
-        int $remove_short_values = null
+        ?int $remove_short_values = null
     ) {
         // init
         $return = [];
